@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E445434A-2B2B-4EE0-A59B-893CC6820A6F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DatabaseDescriptionTool</RootNamespace>
+    <AssemblyName>DatabaseDescriptionTool</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>Program</StartupObject>
+    <ApplicationIcon>Resources\Icons\book.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Virtcore.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckForUpdatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckForUpdatesForm.Designer.cs">
+      <DependentUpon>CheckForUpdatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckWrapper.cs" />
+    <Compile Include="ChooseIndividualObjectsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseIndividualObjectsForm.Designer.cs">
+      <DependentUpon>ChooseIndividualObjectsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComboBoxCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ConfigHandler.cs" />
+    <Compile Include="ConnectionDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionDialogForm.designer.cs">
+      <DependentUpon>ConnectionDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionStringSecurity.cs" />
+    <Compile Include="DdlHandler.cs" />
+    <Compile Include="DynamicAssembly.cs" />
+    <Compile Include="DeleteDescriptionsInSubNodesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteDescriptionsInSubNodesForm.Designer.cs">
+      <DependentUpon>DeleteDescriptionsInSubNodesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedMessageBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtendedMessageBoxForm.Designer.cs">
+      <DependentUpon>ExtendedMessageBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandleDescriptionFieldForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandleDescriptionFieldForm.Designer.cs">
+      <DependentUpon>HandleDescriptionFieldForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageDescriptionFieldsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageDescriptionFieldsForm.Designer.cs">
+      <DependentUpon>ManageDescriptionFieldsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DescriptionTemplate.cs" />
+    <Compile Include="ExcelHelper.cs" />
+    <Compile Include="HandleDescriptionTemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandleDescriptionTemplateForm.Designer.cs">
+      <DependentUpon>HandleDescriptionTemplateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportForm.Designer.cs">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DescriptionField.cs" />
+    <Compile Include="CustomNode.cs" />
+    <Compile Include="Dal.cs" />
+    <Compile Include="DatabaseOperation.cs" />
+    <Compile Include="ErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorForm.designer.cs">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportForm.Designer.cs">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageDescriptionTemplatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageDescriptionTemplatesForm.Designer.cs">
+      <DependentUpon>ManageDescriptionTemplatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NavigateTree.cs" />
+    <Compile Include="ObjectsSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectsSelectorForm.Designer.cs">
+      <DependentUpon>ObjectsSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedPropertiesHelper.cs" />
+    <Compile Include="DescriptionItem.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NodeDataGenerator.cs" />
+    <Compile Include="NodeImage.cs" />
+    <Compile Include="NodeType.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchListForm.Designer.cs">
+      <DependentUpon>SearchListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchTreeHandler.cs" />
+    <Compile Include="ServiceHandler.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckForUpdatesForm.resx">
+      <DependentUpon>CheckForUpdatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseIndividualObjectsForm.resx">
+      <DependentUpon>ChooseIndividualObjectsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionDialogForm.resx">
+      <DependentUpon>ConnectionDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteDescriptionsInSubNodesForm.resx">
+      <DependentUpon>DeleteDescriptionsInSubNodesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtendedMessageBoxForm.resx">
+      <DependentUpon>ExtendedMessageBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandleDescriptionFieldForm.resx">
+      <DependentUpon>HandleDescriptionFieldForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageDescriptionFieldsForm.resx">
+      <DependentUpon>ManageDescriptionFieldsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandleDescriptionTemplateForm.resx">
+      <DependentUpon>HandleDescriptionTemplateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportForm.resx">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorForm.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportForm.resx">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageDescriptionTemplatesForm.resx">
+      <DependentUpon>ManageDescriptionTemplatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectsSelectorForm.resx">
+      <DependentUpon>ObjectsSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchListForm.resx">
+      <DependentUpon>SearchListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchTextForm.resx">
+      <DependentUpon>SearchTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabPageUserControl.resx">
+      <DependentUpon>TabPageUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RegistryHandler.cs" />
+    <Compile Include="ScrollBarHelper.cs" />
+    <Compile Include="SearchHistoryHandler.cs" />
+    <Compile Include="SearchTextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchTextForm.Designer.cs">
+      <DependentUpon>SearchTextForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SplitContainerGrip.cs" />
+    <Compile Include="TabPageUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabPageUserControl.Designer.cs">
+      <DependentUpon>TabPageUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeViewHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DatabaseDescriptionTool.licenseheader" />
+    <None Include="Resources\Images\book.png" />
+    <None Include="Virtcore.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\server_database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\bullet_orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\bullet_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\book_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\database_key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\book_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\book.ico" />
+    <None Include="Resources\Icons\database_key.ico" />
+    <None Include="Resources\Icons\book_edit.ico" />
+    <None Include="Resources\Icons\book_go.ico" />
+    <None Include="Resources\Icons\book_goback.ico" />
+    <None Include="Resources\Icons\help.ico" />
+    <None Include="Resources\Images\disk.png" />
+    <None Include="Resources\Images\help.png" />
+    <None Include="Resources\Images\book_edit.png" />
+    <None Include="Resources\Images\book_goback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\find_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\arrow_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\GetMatches.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\GetIdFromName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\GetDescriptionsToDelete.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\book_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\GetDescriptionFields.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\GetSchemas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
+    <EmbeddedResource Include="Resources\Assemblies\Microsoft.SqlServer.Smo.dll" />
+    <EmbeddedResource Include="Resources\Assemblies\Microsoft.SqlServer.SqlClrProvider.dll" />
+    <EmbeddedResource Include="Resources\Assemblies\Microsoft.SqlServer.SqlEnum.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ICSharpCode.TextEditor\ICSharpCode.TextEditor.csproj">
+      <Project>{2d18be89-d210-49eb-a9dd-2246fbb3df6d}</Project>
+      <Name>ICSharpCode.TextEditor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Assemblies\ICSharpCode.TextEditor.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2017 Lars Hove Christiansen
+http://virtcore.com
+
+This file is a part of Database Description Tool
+
+	Database Description Tool is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	Database Description Tool is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Database Description Tool. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+	<Product Id="*" Name="Database Description Tool" Language="1033" Version="1.0.0" Manufacturer="Lars Hove Christiansen" UpgradeCode="CF1F80E9-2122-4B49-A4FD-FF4445E1195B">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="Database Description Tool 1.0.0" />
+		<Media Id="1" Cabinet="DatabaseDescriptionTool.cab" EmbedCab="yes" />
+		<MajorUpgrade DowngradeErrorMessage="A later version of Database Description Tool is already installed. Setup will now exit." />
+
+		<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+
+		<Icon Id="DatabaseDescriptionTool.exe" SourceFile="$(var.DatabaseDescriptionTool.TargetPath)" />
+		<Property Id="ARPPRODUCTICON" Value="DatabaseDescriptionTool.exe" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+		<PropertyRef Id="NETFRAMEWORK35"/>
+
+		<Condition Message="This application requires .NET Framework 3.5. Please install the .NET Framework then run this installer again.">
+			<![CDATA[Installed OR NETFRAMEWORK35]]>
+		</Condition>
+
+		<Feature Id="Complete" Title="Database Description Tool" Level="1" ConfigurableDirectory="INSTALLDIR">
+			<ComponentRef Id="MainExecutable" />
+			<ComponentRef Id="ProgramMenuDir" />
+			<ComponentRef Id="RegistryEntries" />
+		</Feature>
+
+		<UI>
+			<UIRef Id="WixUI_InstallDir" />
+			<Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+		</UI>
+
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch application after install" />
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
+		<Property Id="WixShellExecTarget" Value="[#DatabaseDescriptionTool.exe]" />
+		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLDIR" Name="Database Description Tool">
+					<Component Id="MainExecutable">
+						<File Id="DatabaseDescriptionTool.exe" Source="$(var.DatabaseDescriptionTool.TargetPath)" KeyPath="yes">
+							<Shortcut Id="startmenu" Directory="ProductProgramMenuFolder" Name="Database Description Tool" WorkingDirectory="INSTALLDIR" Icon="DatabaseDescriptionTool.exe" IconIndex="0" Advertise="yes" />
+							<Shortcut Id="desktop" Directory="DesktopFolder" Name="Database Description Tool" WorkingDirectory="INSTALLDIR" Icon="DatabaseDescriptionTool.exe" IconIndex="0" Advertise="yes" />
+						</File>
+					</Component>
+				</Directory>
+			</Directory>
+
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProductProgramMenuFolder" Name="Database Description Tool">
+					<Component Id="ProgramMenuDir">
+						<CreateFolder Directory="ProductProgramMenuFolder" />
+						<RemoveFolder Id="RemoveProductProgramMenuFolder" Directory="ProductProgramMenuFolder" On="uninstall" />
+						<RegistryValue Root="HKCU" Key="Software\Lars Hove Christiansen\DatabaseDescriptionTool" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+					</Component>
+				</Directory>
+			</Directory>
+
+			<Directory Id="DesktopFolder" Name="Desktop" />
+
+			<Component Id="RegistryEntries">
+				<RegistryValue Root="HKCU" Key="Software\Lars Hove Christiansen\DatabaseDescriptionTool" Type="string" Name="DescriptionFields" Value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&lt;descriptionFields&gt;&lt;descriptionField databaseFieldName=&quot;MS_Description&quot; displayText=&quot;Internal Description&quot; useForImage=&quot;True&quot; information=&quot;Standard description field.&#xD;&#xA;Also used by Microsoft SQL Server Management Studio.&quot; /&gt;&lt;/descriptionFields&gt;" KeyPath="yes" />
+				<!--<RemoveRegistryKey Id="RemoveRegistryEntries" Action="removeOnUninstall" Root="HKCU" Key="SOFTWARE\Lars Hove Christiansen\DatabaseDescriptionTool" />-->
+			</Component>
+		</Directory>
+	</Product>
+</Wix>
